@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Connection Form View -->
+    <record id="view_cs_cart_connection_form" model="ir.ui.view">
+        <field name="name">cs.cart.connection.form</field>
+        <field name="model">cs.cart.connection</field>
+        <field name="arch" type="xml">
+            <form string="CS-Cart Connection">
+                <header>
+                    <button name="action_test_connection" type="object" 
+                            class="btn-primary" string="Test Connection"/>
+                    <button name="action_open_migration_wizard" type="object" 
+                            class="btn-success" string="Start Migration"/>
+                    <button name="action_view_logs" type="object" 
+                            class="btn-secondary" string="View Logs"/>
+                    <field name="last_migration_status" widget="badge"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_test_connection" type="object" 
+                                class="oe_stat_button" icon="fa-wifi">
+                            <div class="o_stat_info">
+                                <field name="last_connection_test" widget="remaining_days"/>
+                                <span class="o_stat_text">Connection</span>
+                            </div>
+                        </button>
+                        <button name="action_open_migration_wizard" type="object" 
+                                class="oe_stat_button" icon="fa-download">
+                            <div class="o_stat_info">
+                                <field name="last_sync_date" widget="remaining_days"/>
+                                <span class="o_stat_text">Migration</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group string="Connection Details">
+                            <field name="name"/>
+                            <field name="host"/>
+                            <field name="port"/>
+                            <field name="database"/>
+                            <field name="username"/>
+                            <field name="password" password="True"/>
+                        </group>
+                        <group string="Settings">
+                            <field name="cs_cart_version"/>
+                            <field name="language_code"/>
+                            <field name="company_id"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Statistics">
+                            <group>
+                                <group>
+                                    <field name="last_connection_test" readonly="1"/>
+                                    <field name="last_sync_date" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="total_migrations" readonly="1"/>
+                                    <field name="last_migration_status" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <div class="alert alert-info" role="alert">
+                                <strong>CS-Cart Version Detection:</strong><br/>
+                                - Auto Detect: Module will try to detect the version automatically<br/>
+                                - Manual: Select your CS-Cart version if auto-detection fails<br/>
+                                <br/>
+                                <strong>Language Code:</strong><br/>
+                                - Use the language code used in your CS-Cart store (tr, en, etc.)<br/>
+                                - This is used for product and category descriptions
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Connection Tree View -->
+    <record id="view_cs_cart_connection_tree" model="ir.ui.view">
+        <field name="name">cs.cart.connection.tree</field>
+        <field name="model">cs.cart.connection</field>
+        <field name="arch" type="xml">
+            <tree string="CS-Cart Connections">
+                <field name="name"/>
+                <field name="host"/>
+                <field name="database"/>
+                <field name="cs_cart_version"/>
+                <field name="last_sync_date"/>
+                <field name="last_migration_status" widget="badge"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Migration Log Tree View -->
+    <record id="view_cs_cart_migration_log_tree" model="ir.ui.view">
+        <field name="name">cs.cart.migration.log.tree</field>
+        <field name="model">cs.cart.migration.log</field>
+        <field name="arch" type="xml">
+            <tree string="Migration Logs">
+                <field name="create_date" string="Date"/>
+                <field name="migration_type"/>
+                <field name="status" widget="badge"/>
+                <field name="total_records"/>
+                <field name="successful_records"/>
+                <field name="failed_records"/>
+                <field name="duration"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Migration Log Form View -->
+    <record id="view_cs_cart_migration_log_form" model="ir.ui.view">
+        <field name="name">cs.cart.migration.log.form</field>
+        <field name="model">cs.cart.migration.log</field>
+        <field name="arch" type="xml">
+            <form string="Migration Log">
+                <header>
+                    <field name="status" widget="badge"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="connection_id" readonly="1"/>
+                            <field name="migration_type" readonly="1"/>
+                            <field name="start_date" readonly="1"/>
+                            <field name="end_date" readonly="1"/>
+                            <field name="duration" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_records" readonly="1"/>
+                            <field name="processed_records" readonly="1"/>
+                            <field name="successful_records" readonly="1"/>
+                            <field name="failed_records" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="error_message" readonly="1" nolabel="1"/>
+                        <field name="details" readonly="1" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Migration Wizard Form View -->
+    <record id="view_cs_cart_migration_wizard_form" model="ir.ui.view">
+        <field name="name">cs.cart.migration.wizard.form</field>
+        <field name="model">cs.cart.migration.wizard</field>
+        <field name="arch" type="xml">
+            <form string="CS-Cart Migration">
+                <div t-if="context.get('progress_mode', False)" class="alert alert-info">
+                    <strong>Migration in progress...</strong>
+                    <br/>
+                    Please do not close this window until migration is complete.
+                </div>
+                
+                <group>
+                    <group string="Migration Setup">
+                        <field name="name" readonly="context.get('progress_mode', False)"/>
+                        <field name="connection_id" readonly="context.get('progress_mode', False)"/>
+                        <field name="cs_cart_version" readonly="1"/>
+                    </group>
+                    
+                    <group string="Progress" t-if="context.get('progress_mode', False)">
+                        <div class="progress" style="height: 30px; margin: 10px 0;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                 role="progressbar" 
+                                 t-att-style="'width: ' + progress + '%;'">
+                                <span t-esc="int(progress)"/>%
+                            </div>
+                        </div>
+                        <field name="current_operation" readonly="1" nolabel="1"/>
+                    </group>
+                </group>
+                
+                <notebook t-if="not context.get('progress_mode', False)">
+                    <page string="Data Selection">
+                        <group>
+                            <group>
+                                <field name="import_categories"/>
+                                <field name="import_products"/>
+                                <field name="import_customers"/>
+                                <field name="import_suppliers" attrs="{'invisible': [('cs_cart_version', '!=', 'mve')]}"/>
+                            </group>
+                            <group>
+                                <field name="language_code"/>
+                                <field name="batch_size"/>
+                            </group>
+                        </group>
+                    </page>
+                    
+                    <page string="Advanced Options">
+                        <group>
+                            <group>
+                                <field name="update_existing"/>
+                                <field name="create_missing_categories"/>
+                                <field name="import_images"/>
+                                <field name="import_prices"/>
+                                <field name="import_inventory"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+                
+                <footer t-if="not context.get('progress_mode', False)">
+                    <button name="action_start_migration" type="object" 
+                            class="btn-primary" string="Start Migration"/>
+                    <button name="action_cancel" type="object" 
+                            class="btn-secondary" string="Cancel"/>
+                </footer>
+                
+                <div t-if="context.get('progress_mode', False)">
+                    <field name="log_message" readonly="1" nolabel="1"/>
+                    
+                    <footer>
+                        <button t-if="state == 'completed'" name="action_cancel" 
+                                type="object" class="btn-primary" string="Close"/>
+                        <button t-if="state == 'error'" name="action_retry" 
+                                type="object" class="btn-warning" string="Retry"/>
+                        <button t-if="state == 'error'" name="action_cancel" 
+                                type="object" class="btn-secondary" string="Close"/>
+                        <div t-if="state == 'progress'" class="text-center">
+                            <i class="fa fa-spinner fa-spin"/> Migration in progress...
+                        </div>
+                    </footer>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Test Connection Wizard Form View -->
+    <record id="view_cs_cart_test_connection_wizard_form" model="ir.ui.view">
+        <field name="name">cs.cart.test.connection.wizard.form</field>
+        <field name="model">cs.cart.test.connection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Test CS-Cart Connection">
+                <sheet>
+                    <group>
+                        <group string="Connection Details">
+                            <field name="host"/>
+                            <field name="port"/>
+                            <field name="database"/>
+                            <field name="username"/>
+                            <field name="password" password="True"/>
+                        </group>
+                        
+                        <group string="Test Results" attrs="{'invisible': [('connection_status', '=', 'not_tested')]}">
+                            <field name="connection_status" widget="badge"/>
+                            <field name="error_message" readonly="1" nolabel="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                
+                <footer>
+                    <button name="action_test_connection" type="object" 
+                            class="btn-primary" string="Test Connection"/>
+                    <button name="action_save_connection" type="object" 
+                            class="btn-success"
+                            attrs="{'invisible': [('connection_status', '!=', 'success')]}"
+                            string="Save Connection"/>
+                    <button name="%(action_cancel)d" type="object" 
+                            class="btn-secondary" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

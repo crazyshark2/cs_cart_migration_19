@@ -1,0 +1,82 @@
+# Turkish translations for CS-Cart Migration module
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo CS-Cart Migration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Turkish <tr@example.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models/cs_cart_config.py
+msgid "CS-Cart Database Connection"
+msgstr "CS-Cart Veritabanı Bağlantısı"
+
+#: models/cs_cart_config.py
+msgid "Connection Name"
+msgstr "Bağlantı Adı"
+
+#: models/cs_cart_config.py
+msgid "Host"
+msgstr "Sunucu"
+
+#: models/cs_cart_config.py
+msgid "Database Name"
+msgstr "Veritabanı Adı"
+
+#: models/cs_cart_config.py
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+#: models/cs_cart_config.py
+msgid "Password"
+msgstr "Şifre"
+
+#: models/cs_cart_config.py
+msgid "CS-Cart Version"
+msgstr "CS-Cart Versiyonu"
+
+#: models/cs_cart_config.py
+msgid "Auto Detect"
+msgstr "Otomatik Tespit"
+
+#: models/cs_cart_config.py
+msgid "Language Code"
+msgstr "Dil Kodu"
+
+#: wizards/migration_wizard.py
+msgid "CS-Cart Migration Wizard"
+msgstr "CS-Cart Migrasyon Sihirbazı"
+
+#: wizards/migration_wizard.py
+msgid "Import Categories"
+msgstr "Kategorileri İçe Aktar"
+
+#: wizards/migration_wizard.py
+msgid "Import Products"
+msgstr "Ürünleri İçe Aktar"
+
+#: wizards/migration_wizard.py
+msgid "Import Customers"
+msgstr "Müşterileri İçe Aktar"
+
+#: wizards/migration_wizard.py
+msgid "Import Suppliers"
+msgstr "Tedarikçileri İçe Aktar"
+
+#: wizards/migration_wizard.py
+msgid "Update Existing Records"
+msgstr "Mevcut Kayıtları Güncelle"
+
+#: wizards/migration_wizard.py
+msgid "Batch Size"
+msgstr "Toplu İşlem Boyutu"
+
+#: wizards/migration_wizard.py
+msgid "Start Migration"
+msgstr "Migrasyonu Başlat"

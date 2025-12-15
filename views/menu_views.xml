@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_cs_cart_migration_root" 
+              name="CS-Cart Migration" 
+              sequence="100"
+              parent="base.menu_administration"/>
+    
+    <!-- Connection Management -->
+    <menuitem id="menu_cs_cart_connections" 
+              name="Connections" 
+              parent="menu_cs_cart_migration_root"
+              action="action_cs_cart_connection"/>
+    
+    <record id="action_cs_cart_connection" model="ir.actions.act_window">
+        <field name="name">CS-Cart Connections</field>
+        <field name="res_model">cs.cart.connection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new CS-Cart database connection
+            </p>
+            <p>
+                Configure your CS-Cart database connection to start migrating data.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Migration Logs -->
+    <menuitem id="menu_cs_cart_migration_logs" 
+              name="Migration Logs" 
+              parent="menu_cs_cart_migration_root"
+              action="action_cs_cart_migration_log"/>
+    
+    <record id="action_cs_cart_migration_log" model="ir.actions.act_window">
+        <field name="name">Migration Logs</field>
+        <field name="res_model">cs.cart.migration.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    
+    <!-- Quick Actions -->
+    <menuitem id="menu_cs_cart_quick_test" 
+              name="Quick Test Connection" 
+              parent="menu_cs_cart_migration_root"
+              action="action_cs_cart_test_connection"/>
+    
+    <record id="action_cs_cart_test_connection" model="ir.actions.act_window">
+        <field name="name">Test Connection</field>
+        <field name="res_model">cs.cart.test.connection.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

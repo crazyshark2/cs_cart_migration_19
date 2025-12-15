@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cs_cart_connection,cs.cart.connection,model_cs_cart_connection,base.group_system,1,1,1,1
+access_cs_cart_connection_user,cs.cart.connection,model_cs_cart_connection,group_cs_cart_user,1,1,0,0
+
+access_cs_cart_migration_log,cs.cart.migration.log,model_cs_cart_migration_log,base.group_system,1,1,1,1
+access_cs_cart_migration_log_user,cs.cart.migration.log,model_cs_cart_migration_log,group_cs_cart_user,1,0,0,0
+
+access_cs_cart_migration_wizard,cs.cart.migration.wizard,model_cs_cart_migration_wizard,base.group_system,1,1,1,1
+access_cs_cart_migration_wizard_user,cs.cart.migration.wizard,model_cs_cart_migration_wizard,group_cs_cart_user,1,1,1,0
+
+access_cs_cart_test_connection_wizard,cs.cart.test.connection.wizard,model_cs_cart_test_connection_wizard,base.group_system,1,1,1,1
+access_cs_cart_test_connection_wizard_user,cs.cart.test.connection.wizard,model_cs_cart_test_connection_wizard,group_cs_cart_user,1,1,1,0
+
+access_cs_cart_category_migration,cs.cart.category.migration,model_cs_cart_category_migration,base.group_system,1,1,1,1
+access_cs_cart_product_migration,cs.cart.product.migration,model_cs_cart_product_migration,base.group_system,1,1,1,1
+access_cs_cart_partner_migration,cs.cart.partner.migration,model_cs_cart_partner_migration,base.group_system,1,1,1,1
